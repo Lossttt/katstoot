@@ -1,11 +1,17 @@
 require("dotenv").config();
 const htmlParser = require("node-html-parser");
-const { Client, GatewayIntentBits } = require("discord.js");
+const { Client, GatewayIntentBits, EmbedBuilder } = require("discord.js");
 const { JSDOM } = require("jsdom");
 const got = require("got");
 const https = require("https");
 const jimp = require("jimp");
 const fs = require("fs");
+const getRandomQuote = require("./randomQuote").getRandomQuote;
+
+function getRandomColor() {
+  // Generate a random hexadecimal color code
+  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+}
 
 const garfieldURLBase = "https://www.gocomics.com/garfield/";
 
@@ -162,6 +168,22 @@ client.on("interactionCreate", async (interaction) => {
           },
         ],
       });
+      break;
+
+    case "quote":
+      const randomQuote = getRandomQuote();
+
+      const embed = new EmbedBuilder()
+        .setColor(getRandomColor()) // Set a random color
+        .setTitle("Random Garfield Quote")
+        .setDescription(`"${randomQuote}"`)
+        .setTimestamp(Date.now())
+        .setFooter({
+          iconURL: interaction.user.displayAvatarURL(),
+          text: `Requested by ${interaction.user.tag}`,
+        });
+
+      await interaction.reply({ embeds: [embed] });
       break;
 
     // newSunday() does not work as intended and I do not care enough about Garfield to put more effort into fixing it
