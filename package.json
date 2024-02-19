@@ -10,8 +10,8 @@
   "keywords": [
     "Garfield"
   ],
-  "author": "Joshnaks",
-  "license": "ISC",
+  "author": "Lost",
+  "license": "MIT",
   "dependencies": {
     "discord.js": "^14.14.1",
     "dotenv": "^16.3.1",
