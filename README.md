@@ -107,5 +107,4 @@ Dark Mode
 <a href="404lost" target="_blank">
 <img src="https://img.shields.io/badge/discord-%2300acee.svg?color=405DE6&style=for-the-badge&logo=discord-&logoColor=white" alt=discord- style="margin-bottom: 5px;"/>
 </a>
-
 </div>
