@@ -113,32 +113,5 @@ function commandBuilding() {
     },
   ];
 
-  /*let getComicCommand = new SlashCommandBuilder()
-        .setName('get-garfield')
-        .setDescription('Replies with Garfield Comic of a Given Date')
-        .addIntegerOption((option) => 
-        {
-            option.setName('day')
-            .setRequired(true)
-            .setMinValue(1)
-            .setMaxValue(31)
-        })
-        .addIntegerOption((option) => 
-        {
-            option.setName('month')
-            .setRequired(true)
-            .setMinValue(1)
-            .setMaxValue(12)
-        })
-        .addIntegerOption((option) => 
-        {
-            option.setName('Year')
-            .setRequired(true)
-            .setMinValue(1978)
-            .setMaxValue(2023)
-        })
-
-    commandList.push(getComicCommand);*/
-
   return commandList;
 }

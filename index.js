@@ -186,26 +186,6 @@ client.on("interactionCreate", async (interaction) => {
       await interaction.reply({ embeds: [embed] });
       break;
 
-    // newSunday() does not work as intended and I do not care enough about Garfield to put more effort into fixing it
-    /*case 'make-sunday':
-            await interaction.deferReply();
-
-            let sundayPath = await newSunday([]);
-
-            await interaction.editReply(
-                {
-                    content: `Fresh lasanga!`,
-                    files:
-                    [
-                        {
-                            attachment: `${sundayPath}`,
-                            name:"pipefield.jpg"
-                        }
-                    ],
-                }
-            );
-            break; */
-
     case "make-window-random":
       await interaction.deferReply();
 
@@ -394,27 +374,6 @@ async function getGarfield(date) {
   return retPromise;
 }
 
-/*let lastDate = new Date(Date.now());
-setInterval(() =>
-{
-    let currentDate = new Date(Date.now());
-
-    if(lastDate.getMinutes() != currentDate.getMinutes())
-    {
-        sendToMainChannel({
-            content: `Here's Today's Garfield Strip @everyone!`,
-            files:
-            [
-                {
-                    attachment: `${  getGarfield(new Date(Date.now()))}`,
-                    name:"todays-garfield.jpg"
-                }
-            ],
-        });
-    }
-
-}, 1000 * 60);*/
-
 async function sendToMainChannel(message) {
   //let main_channel = getChannel(process.env.DAILY_CHANNEL_ID);
 
@@ -473,95 +432,3 @@ async function widthRatio(path) {
   return ratio;
 }
 
-// I don't care enough to make this workable
-/*async function newSunday(panelPaths)
-{
-    while(panelPaths.length < 6)
-    { 
-        panelPaths.push( await randomSunday());
-    }
-
-    let panels = [];
-
-    for(let i = 0; i < panelPaths.length; ++i)
-    {   //console.log(panelPaths[i]);
-        let img = await jimp.read(panelPaths[i]);
-        panels.push(img);
-    }
-
-    let ratio = widthRatio(panelPaths[0]);
-
-    if(ratio == 1 && panels.length < 7) // Big Sunday
-    {
-        panels.push(randomSunday());
-
-        let height = panels[0].bitmap.height;
-        let third1 = Math.round(panels[0].bitmap.width / 3);
-        let third2 = Math.round((2 * panels[0].bitmap.width) / 3);
-        let width = panels[0].bitmap.width;
-        let thirdh1 = Math.round(panels[0].bitmap.height / 3);
-        let thirdh2 = Math.round((2 * panels[0].bitmap.height) / 3);
-
-        for(let i = 1; i < panels.length; ++i)
-        {
-            let panelRatio = widthRatio[panelPaths[i]];
-
-            if(panelRatio == 1)
-            {
-                panels[i].resize(width, height);
-                panels[i].crop(0, thirdh1, width, height);
-            } else
-            {
-                panels[i].resize(width, third2);
-            }
-
-            let idx = i - 1;
-            let x = idx % 3;
-            let y = Math.floor(idx / 3);
-
-            let w = x + 1;
-            let h = y + 1;
-
-            panels[i].crop(x * third1, y * thirdh1, w * third1, h * thirdh1,)
-
-            panels[0].composite(panels[i], x * third1, y * thirdh1);
-
-            
-        }
-    } 
-    else // Small Sunday
-    {
-        let height = panels[0].bitmap.height;
-        let third1 = Math.round(panels[0].bitmap.width / 3);
-        let third2 = Math.round((2 * panels[0].bitmap.width) / 3);
-        let width = panels[0].bitmap.width;
-        let thirdh1 = Math.round(panels[0].bitmap.height / 3);
-        let thirdh2 = Math.round((2 * panels[0].bitmap.height) / 3);
-
-        for(let i = 1; i < panels.length; ++i)
-        {
-            let panelRatio = widthRatio[panelPaths[i]];
-
-            if(panelRatio == 1)
-            {
-                panels[i].resize(width, height);
-                panels[i].crop(0, thirdh1, width, height);
-            } else
-            {
-                panels[i].resize(width, third2);
-            }
-
-            let idx = i;
-            let x = idx % 3;
-            let y = Math.floor(idx / 3);
-
-            panels[0].composite(panels[i], x * third1, y * thirdh1);
-
-            
-        }
-    }
-
-    let path = "newfield.jpg";
-    panels[0].write(path);
-    return path;
-}*/
